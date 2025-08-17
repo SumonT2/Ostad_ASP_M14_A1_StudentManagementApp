@@ -1,0 +1,62 @@
+﻿@model IEnumerable<StudentManagementApp.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="container mt-3">
+    <h2>Students (Age > 18)</h2>
+    <p>Total Students: @ViewBag.StudentCount</p>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="d-flex align-items-center mb-3">
+        <form asp-action="Index" method="get" class="me-2 flex-grow-1">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <input name="searchString" class="form-control" placeholder="Search by name" value="@ViewData["CurrentFilter"]" />
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <a asp-action="Create" class="btn btn-primary">Add New Student</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No students found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

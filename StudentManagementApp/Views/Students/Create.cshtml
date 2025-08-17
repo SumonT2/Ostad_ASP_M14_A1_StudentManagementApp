@@ -1,0 +1,42 @@
+﻿@model StudentManagementApp.Models.Student
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+
+<div class="container mt-3">
+    <h2>Add New Student</h2>
+
+    <form asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label"></label>
+            <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" placeholder="Enter email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Age" class="form-label"></label>
+            <input asp-for="Age" class="form-control" placeholder="Enter age" type="number" min="1" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
